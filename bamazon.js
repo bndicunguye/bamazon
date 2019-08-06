@@ -3,9 +3,7 @@ var inquirer = require("inquirer");
 
 var connection = mysql.createConnection({
   host: "localhost",
-
   user: "root",
-
   password: "root",
   database: "bamazon_db"
 });
@@ -54,7 +52,7 @@ function askQuantity(item) {
     .then(function (value) {
       var quantity = parseInt(value.howMany)
       if (quantity > item.stock_quantity) {
-        console.log("\You are asking for to much")
+        console.log("\Insufficient quantity!")
         getProducts()
       }
       else {
@@ -65,7 +63,7 @@ function askQuantity(item) {
 }
 function buyItems(item, quantity) {
   console.log(item, quantity)
-  //Boneaventure update quantity of item in mysql look at line 132 of greatbay or icecream crud line 44 to see how to update mysql
+ 
   connection.query(
     "UPDATE products SET ? WHERE ?",
     [
@@ -75,6 +73,7 @@ function buyItems(item, quantity) {
       {
         id: quantity.id
       }
+      
     ],
     function (error) {
       if (error) throw err;
