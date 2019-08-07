@@ -66,11 +66,11 @@ function askQuantity(item) {
     
 }
 
-var totalPaid = item.price * value.quantity;
+
 
 function buyItems(item, quantity) {
- console.log(item, quantity)
- 
+
+ var totalPaid = item.price * quantity;
   connection.query(
      "UPDATE products SET stock_quantity = stock_quantity - ? WHERE id = ?",
      [ quantity, item.id],
