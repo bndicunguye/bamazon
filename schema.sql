@@ -22,5 +22,5 @@ VALUES ("water bottle", "outdoor equipement", 10.50, 50),
 ("mobile coverbox", "electronics",50.00, 40),
 ("coffee machine","kitchen equipement",100.00,20),
 ("tea bags","kitchen equipement",15.00, 30),
-("coffee kettle", kitchen equipement,25.00, 15)
+("coffee kettle", "kitchen equipement",25.00, 15)
 

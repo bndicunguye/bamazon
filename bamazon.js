@@ -49,6 +49,9 @@ function askQuantity(item) {
       message: "how many would you like?"
 
     }])
+
+    
+
     .then(function (value) {
       var quantity = parseInt(value.howMany)
       if (quantity > item.stock_quantity) {
@@ -60,30 +63,27 @@ function askQuantity(item) {
       }
 
     })
+    
 }
+
+var totalPaid = item.price * value.quantity;
+
 function buyItems(item, quantity) {
-  console.log(item, quantity)
+ console.log(item, quantity)
  
   connection.query(
-    "UPDATE products SET ? WHERE ?",
-    [
-      {
-        stock_quantity: item.stock_quantity
-      },
-      {
-        id: quantity.id
-      }
-      
-    ],
+     "UPDATE products SET stock_quantity = stock_quantity - ? WHERE id = ?",
+     [ quantity, item.id],
+
     function (error) {
       if (error) throw err;
-      console.log("oder placed successful");
-     
+      console.log("oder placed successful total of $" + totalPaid);
     }
   );
   getProducts();
 
 }
+
 function quantity(choiceID, inventory) {
   for (let i = 0; i < inventory.length; i++) {
     if (inventory[i].id === choiceID) {
